@@ -1,0 +1,25 @@
+name: Pytest
+
+on:
+  push:
+    branches: [ "master", "devel" ]
+  pull_request:
+    branches: [ "master", "devel" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
+      with:
+        version: "0.9.28"
+    - name: Setup Python
+      uses: actions/setup-python@v6
+      with:
+        python-version-file: pyproject.toml
+    - name: Install Project
+      run: uv sync
+    - name: Run Tests
+      run: uv run pytest
