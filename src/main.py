@@ -11,12 +11,23 @@ def main():
     # Takeoff to 10 meters
     drone.takeoff(10)
 
-    time.sleep(20)
+    # Hover for 5 seconds
+    print("Hovering for 5 seconds...")
+    time.sleep(5)
+
+    # Move to position (25m North, 0m East, 0m Down)
+    drone.goto_position(forward=25)
+    print("Moving to position (25m North, 0m East, 0m Down)...")
+
+    # Hover for 5 seconds
+    print("Hovering for 5 seconds...")
+    time.sleep(5)
 
     # Land drone
     drone.land()
 
-    time.sleep(20)
+    # Close connection
+    print("Mission complete. Closing connection.")
 
 if __name__ == "__main__":
     main()
