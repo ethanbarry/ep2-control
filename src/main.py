@@ -16,7 +16,7 @@ def main():
     time.sleep(5)
 
     # Move to position (25m North, 0m East, 0m Down)
-    drone.goto_position(forward=25)
+    drone.move(forward=30)
     print("Moving to position (25m North, 0m East, 0m Down)...")
 
     # Hover for 5 seconds
