@@ -9,11 +9,13 @@ def main():
     drone.set_mode('GUIDED')
     drone.takeoff(10)
 
+    '''
     # We're square dancing with this one, so let's do a little twirl
     for i in range(4):
         drone.move(forward=30)
         drone.rotate(angle=90, relative=True)
-
+    '''
+    
     # Land drone
     drone.land()
     print("Mission complete. Closing connection.")

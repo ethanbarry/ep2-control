@@ -78,7 +78,7 @@ class drone_controller:
                 break
         time.sleep(2)
 
-    def land(self, timeout=60):
+    def land(self, timeout=30):
         print("Initiating landing sequence...")
         self.conn.mav.command_long_send(
             self.conn.target_system, self.conn.target_component,
@@ -96,6 +96,8 @@ class drone_controller:
             # 2. Check Vertical Velocity (vz) from LOCAL_POSITION_NED
             msg_pos = self.conn.recv_match(type='LOCAL_POSITION_NED', blocking=True, timeout=1)
             
+            print('We arrived at this statement...')
+
             if msg_state and msg_pos:
                 v_z = msg_pos.vz  # Downward velocity in m/s
                 landed_flag = msg_state.landed_state
@@ -107,6 +109,8 @@ class drone_controller:
                 if landed_flag == 1 and abs(v_z) < 0.1:
                     print("\nTouchdown confirmed by Autopilot.")
                     break
+
+            print('Going past this statement...')
 
             # 3. Safety Timeout (prevents hanging if landing fails)
             if time.time() - start_time > timeout:
