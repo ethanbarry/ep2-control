@@ -85,17 +85,27 @@ class drone_controller:
             mavutil.mavlink.MAV_CMD_NAV_LAND,
             0, 0, 0, 0, 0, 0, 0, 0
         )
+        self.conn.mav.request_data_stream_send(
+            self.conn.target_system, 
+            self.conn.target_component,
+            mavutil.mavlink.MAV_DATA_STREAM_EXTENDED_STATUS, 
+            3, # Rate in Hz
+            1  # 1 to start sending, 0 to stop
+        )
 
         start_time = time.time()
         
         while True:
             # 1. Check the Autopilot's internal Landed State
             # land_state 1 = On Ground, 2 = Takeoff, 3 = Landing, 4 = Hovering
-            msg_state = self.conn.recv_match(type='EXTENDED_SYS_STATE', blocking=True, timeout=1)
             
+            msg_state = self.conn.recv_match(type='EXTENDED_SYS_STATE', blocking=True, timeout=1)
+            print(f'state: {msg_state}')
+
             # 2. Check Vertical Velocity (vz) from LOCAL_POSITION_NED
             msg_pos = self.conn.recv_match(type='LOCAL_POSITION_NED', blocking=True, timeout=1)
-            
+            print(f'position: {msg_pos}')
+
             print('We arrived at this statement...')
 
             if msg_state and msg_pos:
@@ -108,6 +118,13 @@ class drone_controller:
                 # AND vertical speed is near zero
                 if landed_flag == 1 and abs(v_z) < 0.1:
                     print("\nTouchdown confirmed by Autopilot.")
+                    self.conn.mav.request_data_stream_send(
+                        self.conn.target_system, 
+                        self.conn.target_component,
+                        mavutil.mavlink.MAV_DATA_STREAM_EXTENDED_STATUS, 
+                        3, # Rate in Hz
+                        0  # 1 to start sending, 0 to stop
+                    )
                     break
 
             print('Going past this statement...')
@@ -115,6 +132,13 @@ class drone_controller:
             # 3. Safety Timeout (prevents hanging if landing fails)
             if time.time() - start_time > timeout:
                 print("\nLanding timed out. Manual intervention required!")
+                self.conn.mav.request_data_stream_send(
+                    self.conn.target_system, 
+                    self.conn.target_component,
+                    mavutil.mavlink.MAV_DATA_STREAM_EXTENDED_STATUS, 
+                    3, # Rate in Hz
+                    0  # 1 to start sending, 0 to stop
+                )
                 break
 
             time.sleep(0.2)
