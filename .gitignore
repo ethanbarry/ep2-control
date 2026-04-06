@@ -1,0 +1,32 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local simulator dependencies and runtime state
+.deps/
+.sitl/
+artifacts/
+
+# Logs and temporary outputs
+*.log
+*.tmp
+*.temp
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

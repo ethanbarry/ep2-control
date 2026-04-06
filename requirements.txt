@@ -1,0 +1,14 @@
+matplotlib>=3.8.0
+MAVProxy>=1.8.74
+pymavlink>=2.4.41
+PyYAML>=6.0.1
+pytest>=8.0.0
+billiard>=4.2.0
+dronecan>=1.0.27
+empy==3.3.4
+future>=1.0.0
+geocoder>=1.38.1
+gnureadline>=8.2.13
+intelhex>=2.3.0
+junitparser>=4.0.0
+pexpect>=4.9.0

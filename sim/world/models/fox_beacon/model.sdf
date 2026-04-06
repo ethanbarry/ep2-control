@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <model name="fox_beacon">
+    <static>true</static>
+    <link name="body">
+      <visual name="mast">
+        <geometry>
+          <cylinder>
+            <radius>0.2</radius>
+            <length>1.5</length>
+          </cylinder>
+        </geometry>
+        <pose>0 0 0.75 0 0 0</pose>
+        <material>
+          <ambient>0.9 0.3 0.1 1</ambient>
+          <diffuse>0.9 0.3 0.1 1</diffuse>
+        </material>
+      </visual>
+      <visual name="base">
+        <geometry>
+          <box>
+            <size>1 1 0.2</size>
+          </box>
+        </geometry>
+        <pose>0 0 0.1 0 0 0</pose>
+        <material>
+          <ambient>0.2 0.2 0.2 1</ambient>
+          <diffuse>0.2 0.2 0.2 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

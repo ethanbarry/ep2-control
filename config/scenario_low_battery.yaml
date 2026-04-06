@@ -1,0 +1,49 @@
+name: low_battery_demo
+description: Triggers low battery during the second scan and replays the commanded path home.
+random_seed: 7
+home_position:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+fox:
+  position:
+    x: 120.0
+    y: 80.0
+    z: 0.0
+  carrier_frequency_hz: 915000000.0
+  tx_power_dbm: 16.0
+  path_loss_exponent: 2.05
+  antenna_front_gain_db: 9.0
+  antenna_beamwidth_deg: 60.0
+mission:
+  scan_altitude_m: 20.0
+  spin_bucket_deg: 10
+  offset_distance_m: 70.0
+  cruise_speed_m_s: 8.0
+  scan_sample_period_s: 0.4
+  verification_radius_m: 20.0
+  verify_target_buckets: 6
+  prefer_left_perpendicular: true
+  position_tolerance_m: 2.0
+  min_intersection_angle_deg: 20.0
+  max_triangulation_residual_m: 15.0
+  max_target_error_m: 35.0
+  hold_after_failure_s: 5.0
+battery:
+  start_pct: 50.0
+  low_battery_threshold_pct: 32.0
+  drain_per_meter_pct: 0.06
+  drain_per_spin_sample_pct: 0.24
+  drain_per_takeoff_pct: 2.8
+  drain_per_hover_second_pct: 0.04
+dsp:
+  noise_std_db: 1.0
+  outlier_probability: 0.02
+  outlier_magnitude_db: 8.0
+  timeout_probability: 0.0
+  crash_after_samples:
+  timeout_after_samples:
+  failure_mode: normal
+  forced_bearing_bias_deg: 0.0
+failures:
+  invalid_triangulation: false

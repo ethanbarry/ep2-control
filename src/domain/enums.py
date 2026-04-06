@@ -1,0 +1,26 @@
+from __future__ import annotations
+
+from enum import Enum
+
+
+class MissionState(str, Enum):
+    IDLE = "IDLE"
+    WAIT_FOR_GUIDED = "WAIT_FOR_GUIDED"
+    ACQUIRE_HOME = "ACQUIRE_HOME"
+    SPIN_SCAN_1 = "SPIN_SCAN_1"
+    COMPUTE_PERPENDICULAR_OFFSET = "COMPUTE_PERPENDICULAR_OFFSET"
+    TRANSIT_TO_OFFSET = "TRANSIT_TO_OFFSET"
+    SPIN_SCAN_2 = "SPIN_SCAN_2"
+    TRIANGULATE = "TRIANGULATE"
+    TRANSIT_TO_TARGET = "TRANSIT_TO_TARGET"
+    VERIFY_TARGET = "VERIFY_TARGET"
+    RETURN_TO_HOME_REPLAY = "RETURN_TO_HOME_REPLAY"
+    SAFE_HOLD = "SAFE_HOLD"
+    ABORT_TO_STABILIZE = "ABORT_TO_STABILIZE"
+    COMPLETE = "COMPLETE"
+
+
+class DspFailureMode(str, Enum):
+    NORMAL = "normal"
+    TIMEOUT = "timeout"
+    CRASH = "crash"
